@@ -1,0 +1,84 @@
+import discord
+from discord.ext import commands
+import random   
+import os
+
+# establecer permisos
+permisos = discord.Intents.default()
+permisos.message_content = True
+
+# creación del bot 
+bot = commands.Bot(command_prefix="!", intents=permisos) 
+
+# eventos
+@bot.event
+async def on_ready():
+    print("El bot está en línea")
+
+@bot.command()  
+async def hola(ctx):
+    await ctx.send(f"Hola, mi nombre es {bot.user.name}")
+
+consejos = [
+    "Apaga las luces cuando no las uses",
+    "Desenchufa cargadores y aparatos que no estén en uso",
+    "Usa bombillas LED, duran más y gastan menos energía",
+    "Reduce el consumo de agua, cierra la llave mientras te cepillas los dientes",
+    "Separa los residuos (plástico, vidrio, papel, orgánicos)",
+    "Reutiliza bolsas de tela en lugar de usar bolsas plásticas",
+    "Evita el plástico de un solo uso como pitillos, cubiertos o vasos desechables",
+    "Usa transporte público, bici o camina para reducir la contaminación",
+    "Planta un árbol o cuida una planta, ayudan a mejorar la calidad del aire",
+    "Compra productos locales, reduces la huella de carbono",
+    "Recicla aparatos electrónicos en puntos autorizados",
+    "Reduce el consumo de carne, aunque sea un día a la semana"
+]
+
+@bot.command() 
+async def consejo(ctx):
+    consejo_random = random.choice(consejos)
+    await ctx.send(f"Aquí tienes un consejo: {consejo_random}")
+
+animal_facts = [
+    "Los delfines duermen con un ojo abierto para estar alerta a los depredadores.",
+    "Las jirafas solo duermen entre 10 minutos y 2 horas al día, en periodos muy cortos.",
+    "El corazón de un camarón está en su cabeza.",
+    "Los elefantes son los únicos animales que no pueden saltar.",
+    "Las abejas pueden reconocer rostros humanos.",
+    "Un grupo de flamencos se llama 'flamencada' o 'flamboyance' en inglés.",
+    "Los pulpos tienen tres corazones y su sangre es de color azul.",
+    "Las nutrias marinas se toman de las manos mientras duermen para no separarse.",
+    "Los caballitos de mar son los únicos animales donde el macho se encarga del embarazo.",
+    "El axolote puede regenerar extremidades, partes de su corazón e incluso de su cerebro.",
+    "Los murciélagos son los únicos mamíferos capaces de volar.",
+    "El camaleón no solo cambia de color para camuflarse, también lo hace para comunicarse.",
+    "Las tortugas pueden respirar a través de su trasero en invierno (cloaca).",
+    "El colibrí es el único pájaro que puede volar hacia atrás.",
+    "Los lobos tienen más de 200 formas distintas de comunicarse con sonidos."
+]
+@bot.command()
+async def animales(ctx):
+    dato_animal = random.choice(animal_facts)
+    await ctx.send(f"Aqui un dato sobre animales: {dato_animal}")
+
+datos_plantas = [
+    "El bambú puede crecer hasta 91 cm en un solo día.",
+    "Las plantas producen oxígeno a través de la fotosíntesis, vital para la vida en la Tierra.",
+    "Algunas plantas, como la mimosa púdica, se mueven cuando se las toca.",
+    "Los girasoles pueden seguir la posición del sol durante el día, fenómeno llamado heliotropismo.",
+    "El árbol más viejo del mundo es un pino de más de 4.800 años en California.",
+    "Las plantas carnívoras, como la Venus atrapamoscas, obtienen nutrientes al atrapar insectos.",
+    "Los cactus almacenan agua en sus tallos para sobrevivir en climas áridos.",
+    "El sauce blanco fue la inspiración para la aspirina, ya que contiene ácido salicílico.",
+    "Las algas producen entre el 50% y 80% del oxígeno del planeta.",
+    "Las raíces de un solo árbol pueden extenderse por kilómetros bajo tierra."
+]
+
+@bot.command()
+async def plantas(ctx):
+    dato_plantas = random.choice(datos_plantas)
+    await ctx.send(f"Aqui un dato sobre plantas: {dato_plantas}")
+
+
+bot.run("MTQwNjY1MDc0MjkwMjg4MjQ4NQ.G0tSFr.BtK_wjpxDEuJMYzi6HAUhoHo73SG3ucCyYgvTU")
+
